@@ -8,5 +8,17 @@ nurodomas gamintojas ir jo pagaminti modeliai.
 Pastaba: Informacija apie automobilį (brand) (jo kortelė) bei turi turėti 
 bent minimalų stilių;
 -------------------------------------------------------------------------- */
+import CarCard from "./CarCard.js";
 
 const ENDPOINT = 'cars.json';
+
+let displayCars = async()=>{
+   let data = await fetch(ENDPOINT)
+      .then(res=>res.json())
+      .then(data=>data);
+   
+   data.forEach(entry=>{
+      new CarCard({brand: entry.brand, modelsArray: entry.models}).render();
+   })
+}
+displayCars();
