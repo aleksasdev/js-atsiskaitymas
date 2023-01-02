@@ -6,7 +6,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
     <!-- Custom JS -->
-    <script defer src="./script.js"></script>
+    <script type="module" src="./script.js"></script>
   </head>
   <body>
     <header>
@@ -15,14 +15,27 @@
 
     <main>
       <div class="wrapper">
-        <h1 class="headline">Weight Converter</h1>
+        <h1 class="headline text-style">Weight Converter</h1>
         <!-- Users input -->
         <form>
           <input type="text" id="search" placeholder="Enter kilograms..." />
           <input type="submit" id="submit-btn" value="Calculate" />
         </form>
         <!-- Place for output after form submission -->
-        <div id="output"></div>
+        <div id="output" class="text-style">
+          <span>
+            <p>Pounds: </p>
+            <p class="pounds highlight-style"></p>
+          </span>
+          <span>
+            <p>Grams: </p>
+            <p class="grams highlight-style"></p>
+          </span>
+          <span>
+            <p>Oz: </p>
+            <p class="oz highlight-style"></p>
+          </span>
+        </div>
       </div>
     </main>
 
