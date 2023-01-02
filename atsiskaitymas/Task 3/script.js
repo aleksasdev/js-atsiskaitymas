@@ -9,5 +9,35 @@ Paspaudus mygtuką "Show users":
 
 Pastaba: Informacija apie user'į (jo kortelė) bei turi turėti bent minimalų stilių;
 -------------------------------------------------------------------------- */
+import UserCard from "./UserCard.js";
+
 
 const ENDPOINT = 'https://api.github.com/users';
+const OUTPUT_CONTAINER = document.querySelector("#output");
+
+let displayUsers = async()=>{
+   let data = await fetch(ENDPOINT)
+      .then(res=>res.json())
+      .then(data=>data);
+
+   data.forEach(entry=>{
+      new UserCard({username: entry.login, avatarUrl: entry.avatar_url}).render();
+   })
+}
+
+document.querySelector('#btn').addEventListener('click', e=>{
+   if(e.target.textContent === "Show Users"){
+      e.target.textContent = "Hide";
+      document.querySelector("#message").style.display = "none";
+      displayUsers();
+      return true;
+   }
+
+   e.target.textContent = "Show Users";
+   let info = document.querySelector("#message");
+   info.style.display = "block";
+   while(OUTPUT_CONTAINER.firstChild){
+      OUTPUT_CONTAINER.removeChild(OUTPUT_CONTAINER.firstChild)
+   };
+   OUTPUT_CONTAINER.append(info);
+})
